@@ -1,0 +1,13 @@
+platform :ios, '13.0'
+use_frameworks! :linkage => :static
+install! 'cocoapods', :warn_for_unused_master_specs_repo => false
+
+def pod_Debug
+  pod 'LookinServer', '~> 1.1.7', :subspecs => ['Swift'], :configurations => ['Debug']
+end
+
+target 'FlexibleBoxExample' do
+  pod 'FlexibleBox', :path => '..'
+  
+  pod_Debug
+end
