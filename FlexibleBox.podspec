@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                  = 'FlexibleBox'
-    s.version               = '0.0.1'
+    s.version               = '0.0.2'
     s.summary               = 'flexbox'
     s.homepage              = 'https://github.com/jiasongs/FlexibleBox'
     s.license               = 'MIT'
@@ -13,4 +13,6 @@ Pod::Spec.new do |s|
     s.requires_arc          = true
     s.frameworks            = 'UIKit'
     s.source_files          = 'Sources'
+
+    s.dependency 'Yoga'
 end

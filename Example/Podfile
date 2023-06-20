@@ -9,6 +9,7 @@ end
 
 target 'FlexibleBoxExample' do
   pod 'FlexibleBox', :path => '..'
-  
+  pod 'Yoga', :git => 'https://github.com/facebook/yoga.git', :inhibit_warnings => true
+
   pod_Debug
 end
