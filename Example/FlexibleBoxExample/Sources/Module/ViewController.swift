@@ -17,6 +17,15 @@ class ViewController: UIViewController {
         _ = Layout()
         _ = Layout()
         _ = Layout()
+        
+        let layout = self.view.flexbox.layout
+        print("\(layout)")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let layout = self.view.flexbox.layout
+        print("\(layout)")
     }
     
 }

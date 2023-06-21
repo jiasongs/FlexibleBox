@@ -51,3 +51,22 @@ import yoga
     }
     
 }
+
+extension Layout {
+    
+    public func insert(_ child: Layout, at index: Int) {
+        YGNodeInsertChild(self.yogaNode, child.yogaNode, UInt32(index))
+    }
+    
+    public func remove(_ child: Layout) {
+        YGNodeRemoveChild(self.yogaNode, child.yogaNode)
+    }
+    
+    public func removeFromParent() {
+        guard let yogaParentNode = YGNodeGetParent(self.yogaNode) else {
+            return
+        }
+        YGNodeRemoveChild(yogaParentNode, self.yogaNode)
+    }
+    
+}
