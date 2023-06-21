@@ -1,4 +1,4 @@
-platform :ios, '13.0'
+platform :ios, '13.4'
 use_frameworks! :linkage => :static
 install! 'cocoapods', :warn_for_unused_master_specs_repo => false
 
@@ -10,6 +10,7 @@ end
 target 'FlexibleBoxExample' do
   pod 'FlexibleBox', :path => '..'
   pod 'Yoga', :git => 'https://github.com/facebook/yoga.git', :inhibit_warnings => true
+  pod 'YogaKit', :git => 'https://github.com/facebook/yoga.git', :inhibit_warnings => true
 
   pod_Debug
 end
