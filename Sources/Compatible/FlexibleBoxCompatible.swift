@@ -15,22 +15,6 @@ public struct FlexibleBoxWrapper<Base> {
     }
 }
 
-public protocol FlexibleBoxCompatible {}
-
-extension FlexibleBoxCompatible {
-    
-    public static var flexbox: FlexibleBoxWrapper<Self>.Type {
-        get { FlexibleBoxWrapper<Self>.self }
-        set { }
-    }
-    
-    public var flexbox: FlexibleBoxWrapper<Self> {
-        get { FlexibleBoxWrapper(self) }
-        set { }
-    }
-    
-}
-
 public protocol FlexibleBoxCompatibleObject: AnyObject {}
 
 extension FlexibleBoxCompatibleObject {

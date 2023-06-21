@@ -10,6 +10,27 @@ import FlexibleBox
 
 class ViewController: UIViewController {
     
+    lazy var containerView: UIView = {
+        return UIView()
+    }()
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "title"
+        return label
+    }()
+    
+    lazy var subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "subtitle"
+        return label
+    }()
+    
+    lazy var okButton: UIButton = {
+        let button = UIButton()
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -20,6 +41,55 @@ class ViewController: UIViewController {
         
         let layout = self.view.flexbox.layout
         print("\(layout)")
+        
+        self.view.makeStacks {
+            self.containerView.makeStacks {
+                self.okButton
+                UIButton()
+                UIView().makeStacks {
+                    UILabel().flexbox.
+                    UILabel()
+                    self.subtitleLabel
+                }
+                UIView().makeStacks {
+                    UILabel()
+                    UILabel()
+                    UIView().makeStacks {
+                        UIView().makeStacks {
+                            self.titleLabel
+                        }
+                        UIImageView()
+                    }
+                }
+                UIView().makeStacks {
+                    UIView().makeStacks {
+                        UIView().makeStacks {
+                            self.titleLabel
+                        }
+                        UIImageView()
+                    }
+                    UILabel()
+                    UILabel()
+                }
+            }
+            UIView().makeStacks {
+                UIView().makeStacks {
+                    UILabel()
+                    UIView().makeStacks {
+                        self.titleLabel
+                    }
+                    UIImageView()
+                    UIImageView().makeStacks {
+                        UIButton().makeStacks {
+                            UILabel()
+                        }
+                    }
+                }
+                UILabel()
+                UILabel()
+            }
+            UILabel()
+        }
     }
     
     override func viewDidLayoutSubviews() {
