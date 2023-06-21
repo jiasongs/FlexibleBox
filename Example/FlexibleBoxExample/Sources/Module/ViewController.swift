@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         self.view.backgroundColor = .white
         
         _ = Layout()
+        _ = Layout()
+        _ = Layout()
     }
     
 }

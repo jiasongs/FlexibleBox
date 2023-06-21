@@ -8,7 +8,13 @@
 import UIKit
 import yoga
 
-@MainActor public final class Layout {
+@MainActor public struct Layout {
+    
+    public static var config = Config() {
+        didSet {
+            YGConfigSetPointScaleFactor(Self.yogaConfig, Float(Self.config.pointScaleFactor))
+        }
+    }
     
     public var direction: Direction {
         didSet {
@@ -27,14 +33,18 @@ import yoga
     public var alignItems: Align = .auto
     public var alignSelf: Align = .auto
     
-    fileprivate var yogaNode: YGNodeRef
-    fileprivate var yogaConfig: YGConfigRef
+    fileprivate static var isConfiguredYoga = false
+    fileprivate static var yogaConfig: YGConfigRef = YGConfigGetDefault()
     
-    public init(config: Config = Config.default) {
-        self.yogaConfig = YGConfigNew()
-        YGConfigSetPointScaleFactor(self.yogaConfig, Float(config.pointScaleFactor))
+    fileprivate var yogaNode: YGNodeRef
+    
+    public init() {
+        if !Self.isConfiguredYoga {
+            Self.isConfiguredYoga = true
+            Self.config = Self.config
+        }
         
-        self.yogaNode = YGNodeNewWithConfig(self.yogaConfig)
+        self.yogaNode = YGNodeNewWithConfig(Self.yogaConfig)
         
         self.direction = Direction(yogaStyle: YGNodeStyleGetDirection(self.yogaNode))
         self.flexDirection = FlexDirection(yogaStyle: YGNodeStyleGetFlexDirection(self.yogaNode))

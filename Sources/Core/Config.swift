@@ -8,9 +8,7 @@
 import UIKit
 
 public struct Config {
-    
-    public static var `default` = Config()
-    
+
     public var pointScaleFactor: CGFloat
     
     public init(
