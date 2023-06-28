@@ -31,6 +31,8 @@ class ViewController: UIViewController {
         return button
     }()
     
+    let margin = 10.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
@@ -49,6 +51,7 @@ class ViewController: UIViewController {
             .marginLeft(10)
             .marginLeft(10.5)
             .marginLeft(10%)
+            .marginLeft(Value(self.margin))
         
         self.titleLabel.flexbox.layout = self.titleLabel.flexbox.layout
             .flexDirection(.row)

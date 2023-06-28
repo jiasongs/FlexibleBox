@@ -75,7 +75,7 @@ extension Value: ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
     
 }
 
-extension Value: Equatable, Comparable {
+extension Value: Hashable, Equatable, Comparable {
     
     public static func < (lhs: Value, rhs: Value) -> Bool {
         guard lhs.unit == rhs.unit && lhs.kind == rhs.kind else {
@@ -86,7 +86,7 @@ extension Value: Equatable, Comparable {
             if lhs.value.isNaN && rhs.value.isNaN {
                 return false
             } else {
-                return lhs.value < lhs.value
+                return lhs.value < rhs.value
             }
         case .automatic:
             return false
@@ -104,7 +104,7 @@ extension Value: Equatable, Comparable {
             if lhs.value.isNaN && rhs.value.isNaN {
                 return false
             } else {
-                return lhs.value > lhs.value
+                return lhs.value > rhs.value
             }
         case .automatic:
             return false
@@ -122,7 +122,7 @@ extension Value: Equatable, Comparable {
             if lhs.value.isNaN && rhs.value.isNaN {
                 return true
             } else {
-                return lhs.value == lhs.value
+                return lhs.value == rhs.value
             }
         case .automatic:
             return true
