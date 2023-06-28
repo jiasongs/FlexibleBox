@@ -79,3 +79,45 @@ extension FlexDirection: StyleTransform {
     }
     
 }
+
+extension Justify: StyleTransform {
+    
+    @MainActor
+    public var yogaStyle: YGJustify {
+        switch self {
+        case .flexStart:
+            return .flexStart
+        case .center:
+            return .center
+        case .flexEnd:
+            return .flexEnd
+        case .spaceBetween:
+            return .spaceBetween
+        case .spaceAround:
+            return .spaceAround
+        case .spaceEvenly:
+            return .spaceEvenly
+        }
+    }
+    
+    @MainActor
+    public init(yogaStyle: YGJustify) {
+        switch yogaStyle {
+        case .flexStart:
+            self = .flexStart
+        case .center:
+            self = .center
+        case .flexEnd:
+            self = .flexEnd
+        case .spaceBetween:
+            self = .spaceBetween
+        case .spaceAround:
+            self = .spaceAround
+        case .spaceEvenly:
+            self = .spaceEvenly
+        default:
+            fatalError("unknown")
+        }
+    }
+    
+}

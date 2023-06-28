@@ -31,4 +31,5 @@ extension FlexibleBoxCompatibleObject {
     
 }
 
-extension NSObject: FlexibleBoxCompatibleObject {}
+extension UIView: FlexibleBoxCompatibleObject {}
+extension CALayer: FlexibleBoxCompatibleObject {}

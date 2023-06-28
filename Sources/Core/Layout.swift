@@ -29,18 +29,48 @@ public final class Layout {
         }
     }
     
-    public var justifyContent: Justify = .flexStart
+    public var justifyContent: Justify {
+        didSet {
+            YGNodeStyleSetJustifyContent(self.yogaNode, self.justifyContent.yogaStyle)
+        }
+    }
     public var alignContent: Align = .auto
     public var alignItems: Align = .auto
     public var alignSelf: Align = .auto
     
     public var marginLeft: Value {
         didSet {
-            YGNodeStyleSetMargin(self.yogaNode, .left, self.marginLeft.yogaValue.value)
+            switch self.marginLeft.kind {
+            case .narmal, .undefined:
+                let yogaValue = self.marginLeft.yogaValue
+                switch self.marginLeft.unit {
+                case .point:
+                    YGNodeStyleSetMargin(self.yogaNode, .left, yogaValue.value)
+                case .percent:
+                    YGNodeStyleSetMarginPercent(self.yogaNode, .left, yogaValue.value)
+                }
+            case .automatic:
+                YGNodeStyleSetMarginAuto(self.yogaNode, .left)
+            }
         }
     }
     
-    public var width: Value = .automatic
+    public var width: Value {
+        didSet {
+            switch self.width.kind {
+            case .narmal, .undefined:
+                let yogaValue = self.width.yogaValue
+                switch self.marginLeft.unit {
+                case .point:
+                    YGNodeStyleSetWidth(self.yogaNode, yogaValue.value)
+                case .percent:
+                    YGNodeStyleSetWidthPercent(self.yogaNode, yogaValue.value)
+                }
+            case .automatic:
+                YGNodeStyleSetWidthAuto(self.yogaNode)
+            }
+        }
+    }
     
     private static var isConfiguredYoga = false
     private static var yogaConfig: YGConfigRef = YGConfigGetDefault()
@@ -57,8 +87,9 @@ public final class Layout {
         
         self.direction = Direction(yogaStyle: YGNodeStyleGetDirection(self.yogaNode))
         self.flexDirection = FlexDirection(yogaStyle: YGNodeStyleGetFlexDirection(self.yogaNode))
-        
+        self.justifyContent = Justify(yogaStyle: YGNodeStyleGetJustifyContent(self.yogaNode))
         self.marginLeft = Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .left))
+        self.width = Value(yogaValue: YGNodeStyleGetWidth(self.yogaNode))
     }
     
 }
