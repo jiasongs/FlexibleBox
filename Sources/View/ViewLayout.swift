@@ -30,7 +30,7 @@ extension FlexibleBoxWrapper where Base: ViewLayout {
     public var isEnabled: Bool {
         get {
             guard let enabled: NSNumber = getAssociatedObject(self.base, &AssociatedKeys.enabled) else {
-                return false
+                return getAssociatedObject(self.base, &AssociatedKeys.layout) != nil
             }
             return enabled.boolValue
         }

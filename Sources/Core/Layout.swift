@@ -8,7 +8,8 @@
 import UIKit
 import yoga
 
-@MainActor public struct Layout {
+@MainActor
+public final class Layout {
     
     public static var config = Config() {
         didSet {
@@ -33,10 +34,18 @@ import yoga
     public var alignItems: Align = .auto
     public var alignSelf: Align = .auto
     
-    fileprivate static var isConfiguredYoga = false
-    fileprivate static var yogaConfig: YGConfigRef = YGConfigGetDefault()
+    public var marginLeft: Value {
+        didSet {
+            YGNodeStyleSetMargin(self.yogaNode, .left, self.marginLeft.yogaValue.value)
+        }
+    }
     
-    fileprivate var yogaNode: YGNodeRef
+    public var width: Value = .automatic
+    
+    private static var isConfiguredYoga = false
+    private static var yogaConfig: YGConfigRef = YGConfigGetDefault()
+    
+    private var yogaNode: YGNodeRef
     
     public init() {
         if !Self.isConfiguredYoga {
@@ -48,8 +57,31 @@ import yoga
         
         self.direction = Direction(yogaStyle: YGNodeStyleGetDirection(self.yogaNode))
         self.flexDirection = FlexDirection(yogaStyle: YGNodeStyleGetFlexDirection(self.yogaNode))
+        
+        self.marginLeft = Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .left))
     }
     
+}
+
+extension Layout {
+    
+    @discardableResult
+    public func flexDirection(_ value: FlexDirection) -> Self {
+        self.flexDirection = value
+        return self
+    }
+    
+    @discardableResult
+    public func justifyContent(_ value: Justify) -> Self {
+        self.justifyContent = value
+        return self
+    }
+    
+    @discardableResult
+    public func marginLeft(_ value: Value) -> Self {
+        self.marginLeft = value
+        return self
+    }
 }
 
 extension Layout {
