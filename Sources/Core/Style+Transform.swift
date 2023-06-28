@@ -18,7 +18,6 @@ public protocol StyleTransform {
 
 extension Direction: StyleTransform {
     
-    @MainActor
     public var yogaStyle: YGDirection {
         switch self {
         case .inherit:
@@ -30,7 +29,6 @@ extension Direction: StyleTransform {
         }
     }
     
-    @MainActor
     public init(yogaStyle: YGDirection) {
         switch yogaStyle {
         case .inherit:
@@ -48,7 +46,6 @@ extension Direction: StyleTransform {
 
 extension FlexDirection: StyleTransform {
     
-    @MainActor
     public var yogaStyle: YGFlexDirection {
         switch self {
         case .column:
@@ -62,7 +59,6 @@ extension FlexDirection: StyleTransform {
         }
     }
     
-    @MainActor
     public init(yogaStyle: YGFlexDirection) {
         switch yogaStyle {
         case .column:
@@ -82,7 +78,6 @@ extension FlexDirection: StyleTransform {
 
 extension Justify: StyleTransform {
     
-    @MainActor
     public var yogaStyle: YGJustify {
         switch self {
         case .flexStart:
@@ -100,7 +95,6 @@ extension Justify: StyleTransform {
         }
     }
     
-    @MainActor
     public init(yogaStyle: YGJustify) {
         switch yogaStyle {
         case .flexStart:
