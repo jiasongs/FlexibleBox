@@ -9,20 +9,31 @@ import UIKit
 import yoga
 
 @MainActor
-public extension Value {
+extension Value {
     
-    var yogaValue: YGValue {
-        switch self.kind {
-        case .narmal:
-            return YGValue(value: Float(self.value), unit: self.yogaUnit)
+    public var yogaUnit: YGUnit {
+        switch self.unit {
+        case .point:
+            return .point
+        case .percent:
+            return .percent
+        }
+    }
+    
+    public var yogaValue: YGValue {
+        switch self {
+        case .zero:
+            return YGValueZero
         case .undefined:
             return YGValueUndefined
         case .automatic:
             return YGValueAuto
+        default:
+            return YGValue(value: Float(self.value), unit: self.yogaUnit)
         }
     }
     
-    init(yogaValue: YGValue) {
+    public init(yogaValue: YGValue) {
         switch yogaValue.unit {
         case .point:
             self = Value(FloatLiteralType(yogaValue.value))
@@ -34,15 +45,6 @@ public extension Value {
             self = .automatic
         default:
             fatalError("unknown")
-        }
-    }
-    
-    fileprivate var yogaUnit: YGUnit {
-        switch self.unit {
-        case .point:
-            return YGUnit.point
-        case .percent:
-            return YGUnit.percent
         }
     }
     

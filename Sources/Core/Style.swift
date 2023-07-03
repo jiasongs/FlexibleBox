@@ -36,12 +36,29 @@ public enum Align {
     case flexEnd
     case stretch
     case baseline
-    case YGAlignSpaceBetween
-    case YGAlignSpaceAround
+    case spaceBetween
+    case spaceAround
 }
 
-public enum PositionType {
+public enum Position {
     case `static`
     case relative
     case absolute
+}
+
+public enum Wrap {
+    case none
+    case wrap
+    case wrapReverse
+}
+
+public enum Overflow {
+    case visible
+    case hidden
+    case scroll
+}
+
+public enum Display {
+    case flex
+    case none
 }

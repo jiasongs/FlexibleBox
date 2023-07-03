@@ -115,3 +115,156 @@ extension Justify: StyleTransform {
     }
     
 }
+
+extension Align: StyleTransform {
+    
+    public var yogaStyle: YGAlign {
+        switch self {
+        case .auto:
+            return .auto
+        case .flexStart:
+            return .flexStart
+        case .center:
+            return .center
+        case .flexEnd:
+            return .flexEnd
+        case .stretch:
+            return .stretch
+        case .baseline:
+            return .baseline
+        case .spaceBetween:
+            return .spaceBetween
+        case .spaceAround:
+            return .spaceAround
+        }
+    }
+    
+    public init(yogaStyle: YGAlign) {
+        switch yogaStyle {
+        case .auto:
+            self = .auto
+        case .flexStart:
+            self = .flexStart
+        case .center:
+            self = .center
+        case .flexEnd:
+            self = .flexEnd
+        case .stretch:
+            self = .stretch
+        case .baseline:
+            self = .baseline
+        case .spaceBetween:
+            self = .spaceBetween
+        case .spaceAround:
+            self = .spaceAround
+        default:
+            fatalError("unknown")
+        }
+    }
+}
+
+extension Position: StyleTransform {
+    
+    public var yogaStyle: YGPositionType {
+        switch self {
+        case .static:
+            return .static
+        case .relative:
+            return .relative
+        case .absolute:
+            return .absolute
+        }
+    }
+    
+    public init(yogaStyle: YGPositionType) {
+        switch yogaStyle {
+        case .static:
+            self = .static
+        case .relative:
+            self = .relative
+        case .absolute:
+            self = .absolute
+        default:
+            fatalError("unknown")
+        }
+    }
+    
+}
+
+extension Wrap: StyleTransform {
+    
+    public var yogaStyle: YGWrap {
+        switch self {
+        case .none:
+            return .noWrap
+        case .wrap:
+            return .wrap
+        case .wrapReverse:
+            return .wrapReverse
+        }
+    }
+    
+    public init(yogaStyle: YGWrap) {
+        switch yogaStyle {
+        case .noWrap:
+            self = .none
+        case .wrap:
+            self = .wrap
+        case .wrapReverse:
+            self = .wrapReverse
+        default:
+            fatalError("unknown")
+        }
+    }
+    
+}
+
+extension Overflow: StyleTransform {
+    
+    public var yogaStyle: YGOverflow {
+        switch self {
+        case .visible:
+            return .visible
+        case .hidden:
+            return .hidden
+        case .scroll:
+            return .scroll
+        }
+    }
+    
+    public init(yogaStyle: YGOverflow) {
+        switch yogaStyle {
+        case .visible:
+            self = .visible
+        case .hidden:
+            self = .hidden
+        case .scroll:
+            self = .scroll
+        default:
+            fatalError("unknown")
+        }
+    }
+}
+
+extension Display: StyleTransform {
+    
+    public var yogaStyle: YGDisplay {
+        switch self {
+        case .flex:
+            return .flex
+        case .none:
+            return .none
+        }
+    }
+    
+    public init(yogaStyle: YGDisplay) {
+        switch yogaStyle {
+        case .flex:
+            self = .flex
+        case .none:
+            self = .none
+        default:
+            fatalError("unknown")
+        }
+    }
+}

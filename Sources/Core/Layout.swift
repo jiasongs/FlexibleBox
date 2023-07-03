@@ -11,63 +11,203 @@ import yoga
 @MainActor
 public final class Layout {
     
-    public static var config = Config() {
-        didSet {
-            YGConfigSetPointScaleFactor(Self.yogaConfig, Float(Self.config.pointScaleFactor))
+    public static var config: Config {
+        get {
+            return Config(
+                pointScaleFactor: CGFloat(YGConfigGetPointScaleFactor(Layout.yogaConfig))
+            )
+        }
+        set {
+            YGConfigSetPointScaleFactor(Layout.yogaConfig, Float(newValue.pointScaleFactor))
         }
     }
     
     public var direction: Direction {
-        didSet {
-            YGNodeStyleSetDirection(self.yogaNode, self.direction.yogaStyle)
+        get {
+            return Direction(yogaStyle: YGNodeStyleGetDirection(self.yogaNode))
+        }
+        set {
+            YGNodeStyleSetDirection(self.yogaNode, newValue.yogaStyle)
         }
     }
     
     public var flexDirection: FlexDirection {
-        didSet {
-            YGNodeStyleSetFlexDirection(self.yogaNode, self.flexDirection.yogaStyle)
+        get {
+            return FlexDirection(yogaStyle: YGNodeStyleGetFlexDirection(self.yogaNode))
+        }
+        set {
+            YGNodeStyleSetFlexDirection(self.yogaNode, newValue.yogaStyle)
         }
     }
     
     public var justifyContent: Justify {
-        didSet {
-            YGNodeStyleSetJustifyContent(self.yogaNode, self.justifyContent.yogaStyle)
+        get {
+            return Justify(yogaStyle: YGNodeStyleGetJustifyContent(self.yogaNode))
+        }
+        set {
+            YGNodeStyleSetJustifyContent(self.yogaNode, newValue.yogaStyle)
         }
     }
-    public var alignContent: Align = .auto
-    public var alignItems: Align = .auto
-    public var alignSelf: Align = .auto
+    
+    public var alignContent: Align {
+        get {
+            return Align(yogaStyle: YGNodeStyleGetAlignContent(self.yogaNode))
+        }
+        set {
+            YGNodeStyleSetAlignContent(self.yogaNode, newValue.yogaStyle)
+        }
+    }
+    
+    public var alignItems: Align {
+        get {
+            return Align(yogaStyle: YGNodeStyleGetAlignItems(self.yogaNode))
+        }
+        set {
+            YGNodeStyleSetAlignItems(self.yogaNode, newValue.yogaStyle)
+        }
+    }
+    
+    public var alignSelf: Align {
+        get {
+            return Align(yogaStyle: YGNodeStyleGetAlignSelf(self.yogaNode))
+        }
+        set {
+            YGNodeStyleSetAlignSelf(self.yogaNode, newValue.yogaStyle)
+        }
+    }
+    
+    public var position: Position {
+        get {
+            return Position(yogaStyle: YGNodeStyleGetPositionType(self.yogaNode))
+        }
+        set {
+            YGNodeStyleSetPositionType(self.yogaNode, newValue.yogaStyle)
+        }
+    }
+    
+    public var flexWrap: Wrap {
+        get {
+            return Wrap(yogaStyle: YGNodeStyleGetFlexWrap(self.yogaNode))
+        }
+        set {
+            YGNodeStyleSetFlexWrap(self.yogaNode, newValue.yogaStyle)
+        }
+    }
+    
+    public var overflow: Overflow {
+        get {
+            return Overflow(yogaStyle: YGNodeStyleGetOverflow(self.yogaNode))
+        }
+        set {
+            YGNodeStyleSetOverflow(self.yogaNode, newValue.yogaStyle)
+        }
+    }
+    
+    public var display: Display {
+        get {
+            return Display(yogaStyle: YGNodeStyleGetDisplay(self.yogaNode))
+        }
+        set {
+            YGNodeStyleSetDisplay(self.yogaNode, newValue.yogaStyle)
+        }
+    }
+    
+    public var flex: Value {
+        get {
+            return Value(YGNodeStyleGetFlex(self.yogaNode))
+        }
+        set {
+            assert(newValue.unit != .percent, "percent not supported")
+            
+            let value = newValue.unit != .percent ? newValue.value : Value.undefined.value
+            YGNodeStyleSetFlex(self.yogaNode, Float(value))
+        }
+    }
+    
+    public var flexGrow: Value {
+        get {
+            return Value(YGNodeStyleGetFlex(self.yogaNode))
+        }
+        set {
+            assert(newValue.unit != .percent, "percent not supported")
+            
+            let value = newValue.unit != .percent ? newValue.value : Value.undefined.value
+            YGNodeStyleSetFlexGrow(self.yogaNode, Float(value))
+        }
+    }
+    
+    public var flexShrink: Value {
+        get {
+            return Value(YGNodeStyleGetFlex(self.yogaNode))
+        }
+        set {
+            assert(newValue.unit != .percent, "percent not supported")
+            
+            let value = newValue.unit != .percent ? newValue.value : Value.undefined.value
+            YGNodeStyleSetFlexShrink(self.yogaNode, Float(value))
+        }
+    }
+    
+    public var flexBasis: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetFlexBasis(self.yogaNode))
+        }
+        set {
+            let yogaValue = newValue.yogaValue
+            switch yogaValue.unit {
+            case .point, .undefined:
+                YGNodeStyleSetFlexBasis(self.yogaNode, yogaValue.value)
+            case .percent:
+                YGNodeStyleSetFlexBasisPercent(self.yogaNode, yogaValue.value)
+            case .auto:
+                YGNodeStyleSetFlexBasisAuto(self.yogaNode)
+            default:
+                fatalError()
+            }
+        }
+    }
+    
+    //    @property(nonatomic, readwrite, assign) YGValue left;
+    //    @property(nonatomic, readwrite, assign) YGValue top;
+    //    @property(nonatomic, readwrite, assign) YGValue right;
+    //    @property(nonatomic, readwrite, assign) YGValue bottom;
+    //    @property(nonatomic, readwrite, assign) YGValue start;
+    //    @property(nonatomic, readwrite, assign) YGValue end;
     
     public var marginLeft: Value {
-        didSet {
-            switch self.marginLeft.kind {
-            case .narmal, .undefined:
-                let yogaValue = self.marginLeft.yogaValue
-                switch self.marginLeft.unit {
-                case .point:
-                    YGNodeStyleSetMargin(self.yogaNode, .left, yogaValue.value)
-                case .percent:
-                    YGNodeStyleSetMarginPercent(self.yogaNode, .left, yogaValue.value)
-                }
-            case .automatic:
+        get {
+            return Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .left))
+        }
+        set {
+            let yogaValue = newValue.yogaValue
+            switch yogaValue.unit {
+            case .point, .undefined:
+                YGNodeStyleSetMargin(self.yogaNode, .left, yogaValue.value)
+            case .percent:
+                YGNodeStyleSetMarginPercent(self.yogaNode, .left, yogaValue.value)
+            case .auto:
                 YGNodeStyleSetMarginAuto(self.yogaNode, .left)
+            default:
+                fatalError()
             }
         }
     }
     
     public var width: Value {
-        didSet {
-            switch self.width.kind {
-            case .narmal, .undefined:
-                let yogaValue = self.width.yogaValue
-                switch self.marginLeft.unit {
-                case .point:
-                    YGNodeStyleSetWidth(self.yogaNode, yogaValue.value)
-                case .percent:
-                    YGNodeStyleSetWidthPercent(self.yogaNode, yogaValue.value)
-                }
-            case .automatic:
+        get {
+            return Value(yogaValue: YGNodeStyleGetWidth(self.yogaNode))
+        }
+        set {
+            let yogaValue = newValue.yogaValue
+            switch yogaValue.unit {
+            case .point, .undefined:
+                YGNodeStyleSetWidth(self.yogaNode, yogaValue.value)
+            case .percent:
+                YGNodeStyleSetWidthPercent(self.yogaNode, yogaValue.value)
+            case .auto:
                 YGNodeStyleSetWidthAuto(self.yogaNode)
+            default:
+                fatalError()
             }
         }
     }
@@ -78,18 +218,12 @@ public final class Layout {
     private var yogaNode: YGNodeRef
     
     public init() {
-        if !Self.isConfiguredYoga {
-            Self.isConfiguredYoga = true
-            Self.config = Self.config
+        if !Layout.isConfiguredYoga {
+            Layout.isConfiguredYoga = true
+            Layout.config = Config()
         }
         
-        self.yogaNode = YGNodeNewWithConfig(Self.yogaConfig)
-        
-        self.direction = Direction(yogaStyle: YGNodeStyleGetDirection(self.yogaNode))
-        self.flexDirection = FlexDirection(yogaStyle: YGNodeStyleGetFlexDirection(self.yogaNode))
-        self.justifyContent = Justify(yogaStyle: YGNodeStyleGetJustifyContent(self.yogaNode))
-        self.marginLeft = Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .left))
-        self.width = Value(yogaValue: YGNodeStyleGetWidth(self.yogaNode))
+        self.yogaNode = YGNodeNewWithConfig(Layout.yogaConfig)
     }
     
 }
