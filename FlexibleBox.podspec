@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
     s.frameworks            = 'UIKit'
     s.source_files          = 'Sources/**/*.{swift,h,m}'
 
-    s.dependency 'Yoga'
+    s.dependency 'Yoga', '~> 2.0.0-beta.1'
 end
