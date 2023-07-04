@@ -6,3 +6,47 @@
 //
 
 import UIKit
+import yoga
+
+extension Layout {
+    
+    func setYogaPosition(edge: YGEdge, yogaNode: YGNodeRef, yogaValue: YGValue) {
+        switch yogaValue.unit {
+        case .point, .undefined:
+            YGNodeStyleSetPosition(yogaNode, edge, yogaValue.value)
+        case .percent:
+            YGNodeStyleSetPositionPercent(yogaNode, edge, yogaValue.value)
+        case .auto:
+            YGNodeStyleSetPosition(yogaNode, edge, yogaValue.value)
+        default:
+            fatalError()
+        }
+    }
+    
+    func setYogaMargin(edge: YGEdge, yogaNode: YGNodeRef, yogaValue: YGValue) {
+        switch yogaValue.unit {
+        case .point, .undefined:
+            YGNodeStyleSetMargin(yogaNode, edge, yogaValue.value)
+        case .percent:
+            YGNodeStyleSetMarginPercent(yogaNode, edge, yogaValue.value)
+        case .auto:
+            YGNodeStyleSetMarginAuto(yogaNode, edge)
+        default:
+            fatalError()
+        }
+    }
+    
+    func setYogaPadding(edge: YGEdge, yogaNode: YGNodeRef, yogaValue: YGValue) {
+        switch yogaValue.unit {
+        case .point, .undefined:
+            YGNodeStyleSetPadding(yogaNode, edge, yogaValue.value)
+        case .percent:
+            YGNodeStyleSetPaddingPercent(yogaNode, edge, yogaValue.value)
+        case .auto:
+            YGNodeStyleSetPadding(yogaNode, edge, yogaValue.value)
+        default:
+            fatalError()
+        }
+    }
+    
+}

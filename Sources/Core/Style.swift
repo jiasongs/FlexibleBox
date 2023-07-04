@@ -62,3 +62,7 @@ public enum Display {
     case flex
     case none
 }
+
+public enum Edge {
+    
+}

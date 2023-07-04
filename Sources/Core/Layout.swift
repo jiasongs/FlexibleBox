@@ -8,8 +8,7 @@
 import UIKit
 import yoga
 
-@MainActor
-public final class Layout {
+@MainActor public final class Layout {
     
     public static var config: Config {
         get {
@@ -167,31 +166,131 @@ public final class Layout {
         }
     }
     
-    //    @property(nonatomic, readwrite, assign) YGValue left;
-    //    @property(nonatomic, readwrite, assign) YGValue top;
-    //    @property(nonatomic, readwrite, assign) YGValue right;
-    //    @property(nonatomic, readwrite, assign) YGValue bottom;
-    //    @property(nonatomic, readwrite, assign) YGValue start;
-    //    @property(nonatomic, readwrite, assign) YGValue end;
+    public var left: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetPosition(self.yogaNode, .left))
+        }
+        set {
+            self.setYogaPosition(edge: .left, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+    
+    public var top: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetPosition(self.yogaNode, .top))
+        }
+        set {
+            self.setYogaPosition(edge: .top, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+    
+    public var right: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetPosition(self.yogaNode, .top))
+        }
+        set {
+            self.setYogaPosition(edge: .right, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+    
+    public var bottom: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetPosition(self.yogaNode, .bottom))
+        }
+        set {
+            self.setYogaPosition(edge: .bottom, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+    
+    public var start: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetPosition(self.yogaNode, .start))
+        }
+        set {
+            self.setYogaPosition(edge: .start, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+    
+    public var end: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetPosition(self.yogaNode, .end))
+        }
+        set {
+            self.setYogaPosition(edge: .end, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
     
     public var marginLeft: Value {
         get {
             return Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .left))
         }
         set {
-            let yogaValue = newValue.yogaValue
-            switch yogaValue.unit {
-            case .point, .undefined:
-                YGNodeStyleSetMargin(self.yogaNode, .left, yogaValue.value)
-            case .percent:
-                YGNodeStyleSetMarginPercent(self.yogaNode, .left, yogaValue.value)
-            case .auto:
-                YGNodeStyleSetMarginAuto(self.yogaNode, .left)
-            default:
-                fatalError()
-            }
+            self.setYogaMargin(edge: .left, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
         }
     }
+    
+    public var marginTop: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .top))
+        }
+        set {
+            self.setYogaMargin(edge: .top, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+    
+    public var marginRight: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .right))
+        }
+        set {
+            self.setYogaMargin(edge: .right, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+    
+    public var marginBottom: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .bottom))
+        }
+        set {
+            self.setYogaMargin(edge: .bottom, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+    
+    public var marginStart: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .start))
+        }
+        set {
+            self.setYogaMargin(edge: .start, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+    
+    public var marginEnd: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .end))
+        }
+        set {
+            self.setYogaMargin(edge: .end, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+    
+    public var marginHorizontal: Value {
+        get {
+            return Value(yogaValue: YGNodeStyleGetMargin(self.yogaNode, .horizontal))
+        }
+        set {
+            self.setYogaMargin(edge: .horizontal, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
+        }
+    }
+//    @property(nonatomic, readwrite, assign) YGValue marginLeft;
+//    @property(nonatomic, readwrite, assign) YGValue marginTop;
+//    @property(nonatomic, readwrite, assign) YGValue marginRight;
+//    @property(nonatomic, readwrite, assign) YGValue marginBottom;
+//    @property(nonatomic, readwrite, assign) YGValue marginStart;
+//    @property(nonatomic, readwrite, assign) YGValue marginEnd;
+//    @property(nonatomic, readwrite, assign) YGValue marginHorizontal;
+//    @property(nonatomic, readwrite, assign) YGValue marginVertical;
+//    @property(nonatomic, readwrite, assign) YGValue margin;
     
     public var width: Value {
         get {
