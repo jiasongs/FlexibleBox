@@ -38,7 +38,7 @@ extension Direction: StyleTransform {
         case .RTL:
             self = .rightToLeft
         default:
-            fatalError("unknown")
+            fatalUnknownError()
         }
     }
     
@@ -70,7 +70,7 @@ extension FlexDirection: StyleTransform {
         case .rowReverse:
             self = .rowReverse
         default:
-            fatalError("unknown")
+            fatalUnknownError()
         }
     }
     
@@ -110,7 +110,7 @@ extension Justify: StyleTransform {
         case .spaceEvenly:
             self = .spaceEvenly
         default:
-            fatalError("unknown")
+            fatalUnknownError()
         }
     }
     
@@ -158,7 +158,7 @@ extension Align: StyleTransform {
         case .spaceAround:
             self = .spaceAround
         default:
-            fatalError("unknown")
+            fatalUnknownError()
         }
     }
 }
@@ -185,7 +185,7 @@ extension Position: StyleTransform {
         case .absolute:
             self = .absolute
         default:
-            fatalError("unknown")
+            fatalUnknownError()
         }
     }
     
@@ -213,7 +213,7 @@ extension Wrap: StyleTransform {
         case .wrapReverse:
             self = .wrapReverse
         default:
-            fatalError("unknown")
+            fatalUnknownError()
         }
     }
     
@@ -241,7 +241,7 @@ extension Overflow: StyleTransform {
         case .scroll:
             self = .scroll
         default:
-            fatalError("unknown")
+            fatalUnknownError()
         }
     }
 }
@@ -264,7 +264,7 @@ extension Display: StyleTransform {
         case .none:
             self = .none
         default:
-            fatalError("unknown")
+            fatalUnknownError()
         }
     }
 }

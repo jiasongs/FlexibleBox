@@ -44,7 +44,7 @@ extension Value {
         case .auto:
             self = .automatic
         default:
-            fatalError("unknown")
+            fatalUnknownError()
         }
     }
     

@@ -20,8 +20,8 @@ extension CALayer: ViewLayout {
 }
 
 private struct AssociatedKeys {
-    static var enabled = "flexbox_enabled"
-    static var layout = "flexbox_layout"
+    static var enabled = true
+    static var layout = true
 }
 
 @MainActor
@@ -67,16 +67,16 @@ extension FlexibleBoxWrapper where Base: ViewLayout {
 #if swift(>=5.4)
 @resultBuilder
 public struct StackBuilder {
-  public static func buildBlock(_ stacks: Stack...) -> [Stack] {
-    return stacks
-  }
+    public static func buildBlock(_ stacks: Stack...) -> [Stack] {
+        return stacks
+    }
 }
 #else
 @_functionBuilder
 public struct StackBuilder {
-  public static func buildBlock(_ stack: Stack...) -> [Stack] {
-    return stacks
-  }
+    public static func buildBlock(_ stack: Stack...) -> [Stack] {
+        return stacks
+    }
 }
 #endif
 

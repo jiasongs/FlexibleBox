@@ -19,7 +19,7 @@ extension Layout {
         case .auto:
             YGNodeStyleSetPosition(yogaNode, edge, yogaValue.value)
         default:
-            fatalError()
+            fatalUnknownError()
         }
     }
     
@@ -32,7 +32,7 @@ extension Layout {
         case .auto:
             YGNodeStyleSetMarginAuto(yogaNode, edge)
         default:
-            fatalError()
+            fatalUnknownError()
         }
     }
     
@@ -45,7 +45,7 @@ extension Layout {
         case .auto:
             YGNodeStyleSetPadding(yogaNode, edge, yogaValue.value)
         default:
-            fatalError()
+            fatalUnknownError()
         }
     }
     

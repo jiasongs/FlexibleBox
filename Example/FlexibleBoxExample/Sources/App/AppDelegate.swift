@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     
-    fileprivate func configureWindow() {
+    private func configureWindow() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = ViewController()
         self.window?.makeKeyAndVisible()

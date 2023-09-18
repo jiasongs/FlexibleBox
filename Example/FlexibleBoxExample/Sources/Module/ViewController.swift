@@ -59,54 +59,54 @@ class ViewController: UIViewController {
         
         print("\(self.titleLabel.flexbox.layout)")
         
-//        self.view.makeStacks {
-//            self.containerView.makeStacks {
-//                self.okButton
-//                UIButton()
-//                UIView().makeStacks {
-//                    UILabel().flexbox.
-//                    UILabel()
-//                    self.subtitleLabel
-//                }
-//                UIView().makeStacks {
-//                    UILabel()
-//                    UILabel()
-//                    UIView().makeStacks {
-//                        UIView().makeStacks {
-//                            self.titleLabel
-//                        }
-//                        UIImageView()
-//                    }
-//                }
-//                UIView().makeStacks {
-//                    UIView().makeStacks {
-//                        UIView().makeStacks {
-//                            self.titleLabel
-//                        }
-//                        UIImageView()
-//                    }
-//                    UILabel()
-//                    UILabel()
-//                }
-//            }
-//            UIView().makeStacks {
-//                UIView().makeStacks {
-//                    UILabel()
-//                    UIView().makeStacks {
-//                        self.titleLabel
-//                    }
-//                    UIImageView()
-//                    UIImageView().makeStacks {
-//                        UIButton().makeStacks {
-//                            UILabel()
-//                        }
-//                    }
-//                }
-//                UILabel()
-//                UILabel()
-//            }
-//            UILabel()
-//        }
+        self.view.makeStacks {
+            self.containerView.makeStacks {
+                self.okButton
+                UIButton()
+                UIView().makeStacks {
+                    // UILabel().flexbox.
+                    UILabel()
+                    self.subtitleLabel
+                }
+                UIView().makeStacks {
+                    UILabel()
+                    UILabel()
+                    UIView().makeStacks {
+                        UIView().makeStacks {
+                            self.titleLabel
+                        }
+                        UIImageView()
+                    }
+                }
+                UIView().makeStacks {
+                    UIView().makeStacks {
+                        UIView().makeStacks {
+                            self.titleLabel
+                        }
+                        UIImageView()
+                    }
+                    UILabel()
+                    UILabel()
+                }
+            }
+            UIView().makeStacks {
+                UIView().makeStacks {
+                    UILabel()
+                    UIView().makeStacks {
+                        self.titleLabel
+                    }
+                    UIImageView()
+                    UIImageView().makeStacks {
+                        UIButton().makeStacks {
+                            UILabel()
+                        }
+                    }
+                }
+                UILabel()
+                UILabel()
+            }
+            UILabel()
+        }
     }
     
     override func viewDidLayoutSubviews() {

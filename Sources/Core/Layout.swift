@@ -8,7 +8,11 @@
 import UIKit
 import yoga
 
-@MainActor public final class Layout {
+@MainActor
+public final class Layout {
+    
+    private static var isConfiguredYoga = false
+    private static var yogaConfig = YGConfigGetDefault()
     
     public static var config: Config {
         get {
@@ -161,7 +165,7 @@ import yoga
             case .auto:
                 YGNodeStyleSetFlexBasisAuto(self.yogaNode)
             default:
-                fatalError()
+                fatalUnknownError()
             }
         }
     }
@@ -282,15 +286,15 @@ import yoga
             self.setYogaMargin(edge: .horizontal, yogaNode: self.yogaNode, yogaValue: newValue.yogaValue)
         }
     }
-//    @property(nonatomic, readwrite, assign) YGValue marginLeft;
-//    @property(nonatomic, readwrite, assign) YGValue marginTop;
-//    @property(nonatomic, readwrite, assign) YGValue marginRight;
-//    @property(nonatomic, readwrite, assign) YGValue marginBottom;
-//    @property(nonatomic, readwrite, assign) YGValue marginStart;
-//    @property(nonatomic, readwrite, assign) YGValue marginEnd;
-//    @property(nonatomic, readwrite, assign) YGValue marginHorizontal;
-//    @property(nonatomic, readwrite, assign) YGValue marginVertical;
-//    @property(nonatomic, readwrite, assign) YGValue margin;
+    //    @property(nonatomic, readwrite, assign) YGValue marginLeft;
+    //    @property(nonatomic, readwrite, assign) YGValue marginTop;
+    //    @property(nonatomic, readwrite, assign) YGValue marginRight;
+    //    @property(nonatomic, readwrite, assign) YGValue marginBottom;
+    //    @property(nonatomic, readwrite, assign) YGValue marginStart;
+    //    @property(nonatomic, readwrite, assign) YGValue marginEnd;
+    //    @property(nonatomic, readwrite, assign) YGValue marginHorizontal;
+    //    @property(nonatomic, readwrite, assign) YGValue marginVertical;
+    //    @property(nonatomic, readwrite, assign) YGValue margin;
     
     public var width: Value {
         get {
@@ -306,13 +310,10 @@ import yoga
             case .auto:
                 YGNodeStyleSetWidthAuto(self.yogaNode)
             default:
-                fatalError()
+                fatalUnknownError()
             }
         }
     }
-    
-    private static var isConfiguredYoga = false
-    private static var yogaConfig: YGConfigRef = YGConfigGetDefault()
     
     private var yogaNode: YGNodeRef
     

@@ -16,7 +16,7 @@ public struct Value {
         case percent
     }
     
-    fileprivate enum Kind {
+    private enum Kind {
         case narmal
         case automatic
         case undefined
@@ -25,7 +25,7 @@ public struct Value {
     public let value: FloatLiteralType
     public let unit: Value.Unit
     
-    fileprivate let kind: Value.Kind
+    private let kind: Value.Kind
     
     public init(_ value: FloatLiteralType, unit: Value.Unit = .point) {
         self.value = value
@@ -37,7 +37,7 @@ public struct Value {
         self.init(FloatLiteralType(value), unit: unit)
     }
     
-    fileprivate init(kind: Value.Kind) {
+    private init(kind: Value.Kind) {
         switch kind {
         case .narmal:
             self.value = FloatLiteralType(YGValueZero.value)
