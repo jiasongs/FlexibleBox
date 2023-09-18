@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = 'FlexibleBox'
-  s.version               = '0.0.2'
+  s.version               = '0.0.3'
   s.summary               = 'flexbox'
   s.homepage              = 'https://github.com/jiasongs/FlexibleBox'
   s.license               = 'MIT'
@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source                = { :git => 'https://github.com/jiasongs/FlexibleBox.git', :tag => s.version.to_s }
   s.static_framework      = true
   s.requires_arc          = true
-  s.platform              = :ios, '13.0'
+  s.platform              = :ios, '13.4'
   s.swift_versions        = ['5.1']
   s.frameworks            = 'UIKit'
   s.source_files          = 'Sources/**/*.{swift,h,m}'
