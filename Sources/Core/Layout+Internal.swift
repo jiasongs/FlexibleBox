@@ -10,7 +10,7 @@ import yoga
 
 extension Layout {
     
-    func setYogaPosition(edge: YGEdge, yogaNode: YGNodeRef, yogaValue: YGValue) {
+    static func setYogaPosition(edge: YGEdge, yogaNode: YGNodeRef, yogaValue: YGValue) {
         switch yogaValue.unit {
         case .point, .undefined:
             YGNodeStyleSetPosition(yogaNode, edge, yogaValue.value)
@@ -23,7 +23,7 @@ extension Layout {
         }
     }
     
-    func setYogaMargin(edge: YGEdge, yogaNode: YGNodeRef, yogaValue: YGValue) {
+    static func setYogaMargin(edge: YGEdge, yogaNode: YGNodeRef, yogaValue: YGValue) {
         switch yogaValue.unit {
         case .point, .undefined:
             YGNodeStyleSetMargin(yogaNode, edge, yogaValue.value)
@@ -36,7 +36,7 @@ extension Layout {
         }
     }
     
-    func setYogaPadding(edge: YGEdge, yogaNode: YGNodeRef, yogaValue: YGValue) {
+    static func setYogaPadding(edge: YGEdge, yogaNode: YGNodeRef, yogaValue: YGValue) {
         switch yogaValue.unit {
         case .point, .undefined:
             YGNodeStyleSetPadding(yogaNode, edge, yogaValue.value)

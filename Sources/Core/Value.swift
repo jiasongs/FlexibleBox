@@ -70,11 +70,11 @@ public extension Value {
 extension Value: ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
     
     public init(integerLiteral value: IntegerLiteralType) {
-        self = Value(FloatLiteralType(value), unit: .point)
+        self = Value(FloatLiteralType(value))
     }
     
     public init(floatLiteral value: FloatLiteralType) {
-        self = Value(value, unit: .point)
+        self = Value(value)
     }
     
 }
