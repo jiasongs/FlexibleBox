@@ -11,9 +11,6 @@ import yoga
 @MainActor
 public final class Layout {
     
-    private static var isConfiguredYoga = false
-    private static var yogaConfig = YGConfigGetDefault()
-    
     public static var config: Config {
         get {
             return Config(
@@ -327,14 +324,10 @@ public final class Layout {
         }
     }
     
-    private var yogaNode: YGNodeRef
+    private static let yogaConfig = YGConfigGetDefault()
+    private let yogaNode: YGNodeRef
     
     public init() {
-        if !Layout.isConfiguredYoga {
-            Layout.isConfiguredYoga = true
-            Layout.config = Config()
-        }
-        
         self.yogaNode = YGNodeNewWithConfig(Layout.yogaConfig)
     }
     

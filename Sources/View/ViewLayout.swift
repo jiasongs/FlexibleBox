@@ -20,8 +20,8 @@ extension CALayer: ViewLayout {
 }
 
 private struct AssociatedKeys {
-    static var enabled = true
-    static var layout = true
+    static var enabled: UInt8 = 0
+    static var layout: UInt8 = 0
 }
 
 @MainActor
