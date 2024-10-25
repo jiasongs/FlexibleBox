@@ -7,6 +7,6 @@
 
 import Foundation
 
-internal func fatalUnknownError() -> Never {
-    fatalError("unknown")
+internal func fatalUnknownError() {
+    assertionFailure("unknown")
 }
