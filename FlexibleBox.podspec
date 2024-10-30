@@ -12,9 +12,6 @@ Pod::Spec.new do |s|
   s.swift_versions        = ['5.1']
   s.frameworks            = 'UIKit'
   s.source_files          = 'Sources/**/*.{swift,h,m}'
-  s.pod_target_xcconfig   = { 
-    'SWIFT_INSTALL_OBJC_HEADER' => 'NO'
-  }
   
   s.dependency 'Yoga', '~> 2.0.0'
 end
